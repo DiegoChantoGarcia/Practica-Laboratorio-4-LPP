@@ -1,0 +1,40 @@
+#rakefile
+
+desc "Test positivo"
+task :test_positivo do 
+    require "perimetro"
+    require "test/unit"
+
+    class TestPerimetro < Test::Unit::TestCase
+      def test_perimetro_positivo
+	assert_equal(300/2*3.14, Perimetro.new(300).radio(), "Radio correcto" )
+	assert_equal(16/2*3.14, Perimetro.new(16).radio(), "Radio correcto" )
+      end
+    end
+  end
+
+
+desc "Test negativo"
+task :test_negativo do 
+    require "perimetro"
+    require "test/unit"
+
+    class TestPerimetro < Test::Unit::TestCase
+      def test_failure
+	assert_equal(-300/2*3.14, Perimetro.new(-300).radio(), "Radio incorrecto" )
+	assert_equal(-16/2*3.14, Perimetro.new(-16).radio(), "Radio incorrecto" )
+      end
+    end
+  end
+
+desc "Test de tipo"
+task :test_tipo do 
+      require "perimetro"
+      require "test/unit"
+
+    class TestPerimetro < Test::Unit::TestCase
+      def test_typecheck
+	assert_raise (RuntimeError ) { Perimetro.new('a')}
+      end
+    end
+  end
